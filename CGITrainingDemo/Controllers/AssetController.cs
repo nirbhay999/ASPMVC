@@ -33,9 +33,17 @@ namespace CGITrainingDemo.Controllers
         // GET: AssetController
         public ActionResult Index()
         {
-            var assetsEntity = _assetRepo.GetAllAssets();
-            var assetDTo = assetsEntity.Select(x => MapDTO(x));
-            return View("ListAssets", assetDTo);
+            try
+            {
+                var assetsEntity = _assetRepo.GetAllAssets();
+                var assetDTo = assetsEntity.Select(x => MapDTO(x));
+                return View("ListAssets", assetDTo);
+            }
+            catch (Exception ex)
+            {
+
+                return View("CustomError");
+            }
         }
 
         // GET: AssetController/Details/5
