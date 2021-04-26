@@ -1,0 +1,30 @@
+﻿@model List<Employee>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Employee Id</td>
+                <td>Employee Name</td>
+                <td>Position</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@item.EmployeeId</td>
+                            <td>@item.Name</td>
+                            <td>@item.Position</td>
+                        </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGITrainingDemo", "CGITrainingDemo\CGITrainingDemo.csproj", "{CA983526-3B46-4D5C-ACE0-D750DB6EE671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGIDataAccess", "CGIDataAccess\CGIDataAccess.csproj", "{557D5167-609E-4BC4-882D-08261C080E00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA983526-3B46-4D5C-ACE0-D750DB6EE671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA983526-3B46-4D5C-ACE0-D750DB6EE671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA983526-3B46-4D5C-ACE0-D750DB6EE671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA983526-3B46-4D5C-ACE0-D750DB6EE671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557D5167-609E-4BC4-882D-08261C080E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557D5167-609E-4BC4-882D-08261C080E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557D5167-609E-4BC4-882D-08261C080E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557D5167-609E-4BC4-882D-08261C080E00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF87058E-E98E-4676-AB7D-7C4B8007EF5B}
+	EndGlobalSection
+EndGlobal
