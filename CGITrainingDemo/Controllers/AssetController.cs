@@ -8,16 +8,19 @@ using System.Threading.Tasks;
 using CGITrainingDemo.Models;
 using CGIDataAccess.Entity;
 using CGIDataAccess.Interface;
+using Microsoft.Extensions.Logging;
 
 namespace CGITrainingDemo.Controllers
 {
     public class AssetController : Controller
     {
         private IAsset _assetRepo;
+        private ILogger<AssetController> _logger;
 
-        public AssetController(IAsset assetRepo)
+        public AssetController(IAsset assetRepo, ILogger<AssetController> logger)
         {
             _assetRepo = assetRepo;
+            _logger = logger;
         }
 
         private Asset MapDTO(AssetEntity data)
@@ -41,7 +44,7 @@ namespace CGITrainingDemo.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex.ToString());
                 return View("CustomError");
             }
         }
