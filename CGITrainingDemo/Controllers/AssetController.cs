@@ -9,6 +9,7 @@ using CGITrainingDemo.Models;
 using CGIDataAccess.Entity;
 using CGIDataAccess.Interface;
 using Microsoft.Extensions.Logging;
+using CGIDataAccess;
 
 namespace CGITrainingDemo.Controllers
 {
@@ -16,11 +17,13 @@ namespace CGITrainingDemo.Controllers
     {
         private IAsset _assetRepo;
         private ILogger<AssetController> _logger;
+        private MyAppDbContext _dbContext;
 
-        public AssetController(IAsset assetRepo, ILogger<AssetController> logger)
+        public AssetController(IAsset assetRepo, ILogger<AssetController> logger, MyAppDbContext dbContext)
         {
             _assetRepo = assetRepo;
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         private Asset MapDTO(AssetEntity data)
@@ -52,7 +55,13 @@ namespace CGITrainingDemo.Controllers
         [HttpPost]
         public ActionResult CreateAsset(Asset postData)
         {
-            var mydata = postData;
+            var assetEntity = new AssetEntity();
+            assetEntity.Description = postData.Description;
+            assetEntity.Name = postData.Name;
+            assetEntity.CreatedOn = DateTime.UtcNow;
+
+            _dbContext.Assets.Add(assetEntity);
+            _dbContext.SaveChanges();
 
             // logic to insert this record in DB
             ViewData["Entity"] = "Asset";

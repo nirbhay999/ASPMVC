@@ -3,37 +3,21 @@ using CGIDataAccess.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CGIDataAccess.Concrete
 {
     public class AssetRepo : IAsset
     {
+        private MyAppDbContext _dbContext;
+
+        public AssetRepo(MyAppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public IEnumerable<AssetEntity> GetAllAssets()
         {
-            return new List<AssetEntity>
-            {
-                new AssetEntity
-                {
-                    Id=1,
-                    Name="Laptop",
-                    Description="A dell laptop mode xsp13",
-                    CreatedOn=DateTime.UtcNow
-                },
-                new AssetEntity
-                {
-                    Id=2,
-                    Name="Mouse",
-                    Description="A mouse",
-                    CreatedOn=DateTime.UtcNow
-                },
-                new AssetEntity
-                {
-                    Id=1,
-                    Name="Headphones",
-                    Description="A headphone",
-                    CreatedOn=DateTime.UtcNow
-                }
-            };
+            return _dbContext.Assets.ToList();
         }
     }
 }

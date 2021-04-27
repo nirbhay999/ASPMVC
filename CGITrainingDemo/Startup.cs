@@ -28,7 +28,7 @@ namespace CGITrainingDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IAsset, AssetRepo>();
+            services.AddScoped<IAsset, AssetRepo>();
             services.AddDbContext<MyAppDbContext>(options=> {
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDb"));
             }
