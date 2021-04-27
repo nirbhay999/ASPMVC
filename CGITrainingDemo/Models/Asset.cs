@@ -10,7 +10,7 @@ namespace CGITrainingDemo.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="Asset name is required")]
-        [MaxLength(30,ErrorMessage ="name cannot be more than 30 characters")]
+        [RegularExpression(@"^[789]\d{9}$",ErrorMessage ="Not a valid mobile number")]
         public string Name { get; set; }
         [Required(ErrorMessage ="Asset description is required")]
         public string Description { get; set; }
