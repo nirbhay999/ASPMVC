@@ -4,6 +4,7 @@ using CGIDataAccess.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,10 @@ namespace CGITrainingDemo
         {
             services.AddControllersWithViews();
             services.AddSingleton<IAsset, AssetRepo>();
-            services.AddDbContext<AppDbContext>();
+            services.AddDbContext<MyAppDbContext>(options=> {
+                options.UseSqlServer(Configuration.GetConnectionString("LocalDb"));
+            }
+           );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

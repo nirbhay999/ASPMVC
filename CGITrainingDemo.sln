@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGITrainingDemo", "CGITrainingDemo\CGITrainingDemo.csproj", "{CA983526-3B46-4D5C-ACE0-D750DB6EE671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGITrainingDemo", "CGITrainingDemo\CGITrainingDemo.csproj", "{CA983526-3B46-4D5C-ACE0-D750DB6EE671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGIDataAccess", "CGIDataAccess\CGIDataAccess.csproj", "{557D5167-609E-4BC4-882D-08261C080E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGIDataAccess", "CGIDataAccess\CGIDataAccess.csproj", "{557D5167-609E-4BC4-882D-08261C080E00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A324DBE-924C-432A-9122-29375A3CC761}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

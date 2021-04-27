@@ -6,8 +6,16 @@ using System.Text;
 
 namespace CGIDataAccess
 {
-    public class AppDbContext:DbContext
+    public class MyAppDbContext:DbContext
     {
+        public MyAppDbContext(DbContextOptions<MyAppDbContext> options)
+            :base(options)
+        {
+
+        }
+
+        
         public DbSet<AssetEntity> Assets { get; set; }
+       
     }
 }
