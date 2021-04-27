@@ -1,3 +1,4 @@
+using CGIDataAccess;
 using CGIDataAccess.Concrete;
 using CGIDataAccess.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ namespace CGITrainingDemo
         {
             services.AddControllersWithViews();
             services.AddSingleton<IAsset, AssetRepo>();
+            services.AddDbContext<AppDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
