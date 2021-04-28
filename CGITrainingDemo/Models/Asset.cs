@@ -10,9 +10,11 @@ namespace CGITrainingDemo.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="Asset name is required")]
-        [RegularExpression(@"^[789]\d{9}$",ErrorMessage ="Not a valid mobile number")]
         public string Name { get; set; }
         [Required(ErrorMessage ="Asset description is required")]
         public string Description { get; set; }
+        [Required]
+        public string TagNumber { get; set; }
+       
     }
 }
