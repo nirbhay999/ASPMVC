@@ -16,6 +16,7 @@ namespace CGIDataAccess
 
         
         public DbSet<AssetEntity> Assets { get; set; }
+        public DbSet<EmployeeEntity> Employees { get; set; }
        
     }
 }

@@ -17,7 +17,6 @@ namespace CGITrainingDemo.Models
         [Required]
         [Remote("CheckTagUniqueness","Asset")]
         public string TagNumber { get; set; }
-        [Remote("PinCodeValid", "Asset")]
-        public string Pincode { get; set; }
+        
     }
 }

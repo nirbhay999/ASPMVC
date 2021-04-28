@@ -20,14 +20,13 @@ namespace CGITrainingDemo.Controllers
         private IAsset _assetRepo;
         private ILogger<AssetController> _logger;
         private MyAppDbContext _dbContext;
-        private IHttpClientFactory _httpClientFactory;
 
-        public AssetController(IAsset assetRepo, ILogger<AssetController> logger, MyAppDbContext dbContext,IHttpClientFactory httpClientFactory)
+        public AssetController(IAsset assetRepo, ILogger<AssetController> logger, MyAppDbContext dbContext)
         {
             _assetRepo = assetRepo;
             _logger = logger;
             _dbContext = dbContext;
-            _httpClientFactory = httpClientFactory;
+            
         }
 
         private Asset MapDTO(AssetEntity data)
@@ -74,23 +73,7 @@ namespace CGITrainingDemo.Controllers
             return View("Success");
         }
 
-        public async  Task<ActionResult> PinCodeValid(string pinCode)
-        {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://api.postalpincode.in/pincode/{pinCode}");
-            var result = await response.Content.ReadAsStringAsync();
-            var result1 = result.Trim('[', ']');
-            var actualResult = JsonConvert.DeserializeObject<PincodeRes>(result1);
-            if(actualResult.Status== "Success")
-            {
-                return Json(true);
-            }
-            else
-            {
-                return Json($"Pincode: {pinCode} is not valid");
-            }
-           
-        }
+        
 
         public ActionResult CheckTagUniqueness(string tagNumber)
         {
