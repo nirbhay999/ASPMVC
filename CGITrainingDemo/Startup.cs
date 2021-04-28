@@ -33,6 +33,8 @@ namespace CGITrainingDemo
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDb"));
             }
            );
+
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

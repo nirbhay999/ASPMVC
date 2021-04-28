@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace CGITrainingDemo.Models
         [Required(ErrorMessage ="Asset description is required")]
         public string Description { get; set; }
         [Required]
+        [Remote("CheckTagUniqueness","Asset")]
         public string TagNumber { get; set; }
-
-        // demo commnet
-       
+        [Remote("PinCodeValid", "Asset")]
+        public string Pincode { get; set; }
     }
 }

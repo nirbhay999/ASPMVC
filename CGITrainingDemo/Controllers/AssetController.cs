@@ -10,6 +10,8 @@ using CGIDataAccess.Entity;
 using CGIDataAccess.Interface;
 using Microsoft.Extensions.Logging;
 using CGIDataAccess;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace CGITrainingDemo.Controllers
 {
@@ -18,12 +20,14 @@ namespace CGITrainingDemo.Controllers
         private IAsset _assetRepo;
         private ILogger<AssetController> _logger;
         private MyAppDbContext _dbContext;
+        private IHttpClientFactory _httpClientFactory;
 
-        public AssetController(IAsset assetRepo, ILogger<AssetController> logger, MyAppDbContext dbContext)
+        public AssetController(IAsset assetRepo, ILogger<AssetController> logger, MyAppDbContext dbContext,IHttpClientFactory httpClientFactory)
         {
             _assetRepo = assetRepo;
             _logger = logger;
             _dbContext = dbContext;
+            _httpClientFactory = httpClientFactory;
         }
 
         private Asset MapDTO(AssetEntity data)
@@ -32,7 +36,8 @@ namespace CGITrainingDemo.Controllers
             {
                 Id = data.Id,
                 Name = data.Name,
-                Description = data.Description
+                Description = data.Description,
+                TagNumber=data.TagNumber
             };
             return ret;
         }
@@ -58,6 +63,7 @@ namespace CGITrainingDemo.Controllers
             var assetEntity = new AssetEntity();
             assetEntity.Description = postData.Description;
             assetEntity.Name = postData.Name;
+            assetEntity.TagNumber = postData.TagNumber;
             assetEntity.CreatedOn = DateTime.UtcNow;
 
             _dbContext.Assets.Add(assetEntity);
@@ -66,6 +72,34 @@ namespace CGITrainingDemo.Controllers
             // logic to insert this record in DB
             ViewData["Entity"] = "Asset";
             return View("Success");
+        }
+
+        public async  Task<ActionResult> PinCodeValid(string pinCode)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync($"https://api.postalpincode.in/pincode/{pinCode}");
+            var result = await response.Content.ReadAsStringAsync();
+            var result1 = result.Trim('[', ']');
+            var actualResult = JsonConvert.DeserializeObject<PincodeRes>(result1);
+            if(actualResult.Status== "Success")
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Pincode: {pinCode} is not valid");
+            }
+           
+        }
+
+        public ActionResult CheckTagUniqueness(string tagNumber)
+        {
+            var tagExists = _dbContext.Assets.Any(x => x.TagNumber == tagNumber);
+            if (tagExists)
+            {
+                return Json($"Tag number {tagNumber} already exist");
+            }
+            return Json(true);
         }
 
         public ActionResult Create()
