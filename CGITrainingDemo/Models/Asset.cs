@@ -15,6 +15,8 @@ namespace CGITrainingDemo.Models
         public string Description { get; set; }
         [Required]
         public string TagNumber { get; set; }
+
+        // demo commnet
        
     }
 }
