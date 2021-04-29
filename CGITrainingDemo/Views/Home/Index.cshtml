@@ -1,14 +1,18 @@
 ﻿
-    <div style="display:inline-block;width:300px;margin-right:20px;" >
-        @{
-            await Html.RenderPartialAsync("_HomeEmp");
-        }
-    </div>
-    
-    <div style="display:inline-block;width:300px">
-        @{
-            await Html.RenderPartialAsync("_HomeAsset");
-        }
+<div style="display:inline-block;width:300px;margin-right:20px;">
+    @{
+        await Html.RenderPartialAsync("_HomeEmp");
+    }
+</div>
 
-    </div>
+<div style="display:inline-block;width:300px">
+    @{
+        await Html.RenderPartialAsync("_HomeAsset");
+    }
+
+</div>
+<div style="display:inline-block;width:300px">
+    <support></support>
+</div>
+    
 
