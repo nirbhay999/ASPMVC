@@ -1,7 +1,14 @@
 ﻿
-<div class="text-center">
+    <div style="display:inline-block;width:300px;margin-right:20px;" >
+        @{
+            await Html.RenderPartialAsync("_HomeEmp");
+        }
+    </div>
+    
+    <div style="display:inline-block;width:300px">
+        @{
+            await Html.RenderPartialAsync("_HomeAsset");
+        }
 
-<p class="alert-info">
-    Welcome to Asset Management Portal. Use the links on the top for various functionality.
-</p>  
-</div>
+    </div>
+
