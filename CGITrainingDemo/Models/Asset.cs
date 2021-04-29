@@ -15,7 +15,7 @@ namespace CGITrainingDemo.Models
         [Required(ErrorMessage ="Asset description is required")]
         public string Description { get; set; }
         [Required]
-        [Remote("CheckTagUniqueness","Asset")]
+        [Remote("CheckTagUniqueness","Asset",AdditionalFields ="Id")]
         public string TagNumber { get; set; }
         
     }

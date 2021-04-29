@@ -20,7 +20,10 @@
             <th>
                 Description
             </th>
-           
+            <th>Tag Number</th>
+           <th>
+               Actions
+           </th>
         </tr>
     </thead>
     <tbody>
@@ -35,12 +38,14 @@
             <td>
                 @item.Description
             </td>
-           
-            @*<td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>*@
+           <td>
+               @item.TagNumber
+           </td>
+            <td>
+          
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
         </tr>
 }
     </tbody>

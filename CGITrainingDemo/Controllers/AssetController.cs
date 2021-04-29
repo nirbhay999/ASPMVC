@@ -75,8 +75,14 @@ namespace CGITrainingDemo.Controllers
 
         
 
-        public ActionResult CheckTagUniqueness(string tagNumber)
+        public ActionResult CheckTagUniqueness(string tagNumber,int id)
         {
+           var entity = _dbContext.Assets.Find(id);
+            if(entity!=null && entity.TagNumber == tagNumber)
+            {
+                return Json(true);
+            }
+
             var tagExists = _dbContext.Assets.Any(x => x.TagNumber == tagNumber);
             if (tagExists)
             {
@@ -89,5 +95,36 @@ namespace CGITrainingDemo.Controllers
         {
             return View("CreateAsset");
         }
+       
+        public async Task<IActionResult> Edit(int id)
+        {
+            var asset =await _dbContext.Assets.FindAsync(id);
+            var assetDTO = MapDTO(asset);
+            return View("EditAsset", assetDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAsset(Asset data)
+        {
+            var entity = await _dbContext.Assets.FindAsync(data.Id);
+            entity.Name = data.Name;
+            entity.Description = data.Description;
+            entity.TagNumber = data.TagNumber;
+            _dbContext.Update(entity);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var asset = await _dbContext.Assets.FindAsync(id);
+            _dbContext.Remove(asset);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+
     }
+
+    
 }
