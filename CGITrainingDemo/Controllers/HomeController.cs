@@ -14,8 +14,13 @@ namespace CGITrainingDemo.Controllers
         // FUnction , Action Method
         public IActionResult Index()
         {
-           
-            return View();
+            var supportInfo = new SupportInfo
+            {
+                Address = "New Delhi , India",
+                PhoneNumber = "999999999",
+                Email = "support@org.com"
+            };
+            return View(supportInfo);
         }
 
        

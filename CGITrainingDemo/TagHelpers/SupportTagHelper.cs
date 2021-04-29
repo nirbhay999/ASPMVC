@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using CGITrainingDemo.Models;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,13 @@ namespace CGITrainingDemo.TagHelpers
 {
     public class SupportTagHelper:TagHelper
     {
+        public SupportInfo Info { get; set; }
         public override void Process(TagHelperContext apple, TagHelperOutput mango)
         {
+            
             mango.TagName = "div";
-            mango.Content.SetHtmlContent(@"<p>Contact Adress: 5th Avenue, Newyork, USA</p><p> Tel No: 9191919182882</p><p>Email:support @org.com</p>");
+           
+            mango.Content.SetHtmlContent($@"<p>{Info.Address}</p><p>Tel No:{Info.PhoneNumber}</p><p>Email:{Info.Email}</p>");
         }
     }
 }
