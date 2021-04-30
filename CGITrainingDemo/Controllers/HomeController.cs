@@ -17,6 +17,7 @@ namespace CGITrainingDemo.Controllers
         // FUnction , Action Method
         public IActionResult Index()
         {
+           
             var supportInfo = new SupportInfo
             {
                 Address = "New Delhi , India",
