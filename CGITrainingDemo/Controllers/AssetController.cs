@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 
 namespace CGITrainingDemo.Controllers
 {
+   
     public class AssetController : Controller
     {
         private IAsset _assetRepo;
@@ -91,6 +92,7 @@ namespace CGITrainingDemo.Controllers
             return Json(true);
         }
 
+        
         public ActionResult Create()
         {
             return View("CreateAsset");

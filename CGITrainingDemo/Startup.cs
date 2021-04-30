@@ -27,7 +27,8 @@ namespace CGITrainingDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+           
             services.AddScoped<IAsset, AssetRepo>();
             services.AddDbContext<MyAppDbContext>(options=> {
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDb"));
@@ -57,11 +58,13 @@ namespace CGITrainingDemo
 
             app.UseAuthorization();
 
+
+            // Conventional Routing
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
