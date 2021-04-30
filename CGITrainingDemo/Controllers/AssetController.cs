@@ -12,10 +12,12 @@ using Microsoft.Extensions.Logging;
 using CGIDataAccess;
 using System.Net.Http;
 using Newtonsoft.Json;
+using CGITrainingDemo.Attributes;
 
 namespace CGITrainingDemo.Controllers
 {
-   
+    [CGIAuhtorize]
+
     public class AssetController : Controller
     {
         private IAsset _assetRepo;

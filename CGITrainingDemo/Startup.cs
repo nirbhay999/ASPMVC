@@ -3,6 +3,7 @@ using CGIDataAccess.Concrete;
 using CGIDataAccess.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -53,11 +54,21 @@ namespace CGITrainingDemo
             //}
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.Use(async (context, next) =>
+            {
+                context.Request.Headers.Add("CGi-Custom", "My Own");
 
+                await next();
+
+            });
             app.UseRouting();
 
             app.UseAuthorization();
 
+
+           
+                
+           
 
             // Conventional Routing
             app.UseEndpoints(endpoints =>

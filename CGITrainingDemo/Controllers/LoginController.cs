@@ -1,5 +1,6 @@
 ﻿using CGIDataAccess;
 using CGITrainingDemo.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CGITrainingDemo.Controllers
 {
+    
     public class LoginController : Controller
     {
         public LoginController(MyAppDbContext dbContext)
@@ -19,6 +21,7 @@ namespace CGITrainingDemo.Controllers
 
         public IActionResult Index()
         {
+            var headers = HttpContext.Request.Headers.ToList();
             return View();
         }
         [HttpPost]
@@ -27,9 +30,15 @@ namespace CGITrainingDemo.Controllers
             var correct = _dbContext.Employees.Any(x => x.Email == data.Email && x.Password == data.Password);
             if (correct)
             {
+                HttpContext.Response.Cookies.Append("cgi-auth", data.Email);
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("LoginError", "Incorrect user name or password");
+            return View("Index");
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Response.Cookies.Delete("cgi-auth");
             return View("Index");
         }
     }
