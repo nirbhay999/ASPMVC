@@ -1,4 +1,5 @@
 ﻿using CGIDataAccess;
+using CGITrainingDemo.Attributes;
 using CGITrainingDemo.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace CGITrainingDemo.Controllers
 {
-    
+    /// <summary>
+    /// new cooment
+    /// </summary>
+    [CustomExec]
     public class LoginController : Controller
     {
         public LoginController(MyAppDbContext dbContext)
@@ -21,6 +25,7 @@ namespace CGITrainingDemo.Controllers
 
         public IActionResult Index()
         {
+            
             var headers = HttpContext.Request.Headers.ToList();
             return View();
         }

@@ -43,6 +43,8 @@ namespace CGITrainingDemo.Controllers
             };
             return ret;
         }
+
+       
         // GET: AssetController
         public ActionResult Index()
         {

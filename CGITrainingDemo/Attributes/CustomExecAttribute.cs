@@ -8,6 +8,11 @@ namespace CGITrainingDemo.Attributes
 {
     public class CustomExecAttribute : ExceptionFilterAttribute
     {
-
+        public override void OnException(ExceptionContext context)
+        {
+            
+           
+            base.OnException(context);
+        }
     }
 }
